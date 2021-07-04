@@ -10,6 +10,8 @@ import { Request, Response } from 'express';
 import { useExpressServer } from 'routing-controllers';
 import 'reflect-metadata';
 import { ErrorHandlerMiddleware } from './middleware/ErrorHandlerMiddleware';
+import Container from 'typedi';
+import { KafkaHandler } from './kafka/KafkaHandler';
 const MemoryStore = require('memorystore')(session);
 const jwtHandler = new JWTHandler((token: string) => {
     return new Promise((resolve: any, reject: any) => {
@@ -29,6 +31,8 @@ declare module 'express-serve-static-core' {
         _session?: any;
     }
 }
+const kafka = Container.get(KafkaHandler);
+kafka.connect();
 const app = express();
 app.use(cors());
 app.use(compression());
