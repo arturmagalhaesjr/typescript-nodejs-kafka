@@ -1,7 +1,5 @@
 import { Consumer, KafkaClient, Producer } from 'kafka-node';
 import { Service } from 'typedi';
-const PARTITION = process.env['KAFKA_PARTITIONS'] ?? 1;
-const REPLICATION = process.env['KAFKA_REPLICATION'] ?? 1;
 
 type KafkaTopic = {
     topic: string;
@@ -26,6 +24,8 @@ export class KafkaHandler {
     }
 
     private createTopic(topicName: string): void {
+        const PARTITION = process.env['KAFKA_PARTITIONS'] ?? 1;
+        const REPLICATION = process.env['KAFKA_REPLICATION'] ?? 1;
         this.client.createTopics(
             [
                 {

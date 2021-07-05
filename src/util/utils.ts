@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 
 export const getApiLinks = (req: Request): Array<any> => {
     return [
@@ -7,11 +7,4 @@ export const getApiLinks = (req: Request): Array<any> => {
             href: req.protocol + '://' + req.hostname + req.path,
         },
     ];
-};
-
-export const errorHandler = (res: Response, message: string, status = 500): void => {
-    res.status(500).send({
-        status: status,
-        error: message,
-    });
 };

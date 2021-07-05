@@ -57,6 +57,9 @@ app.use(
 app.get('/health-check', (request: Request, response: Response) => {
     response.send('OK');
 });
+app.get('/throw-error', () => {
+    throw new Error('Throw error');
+});
 
 app.post(apiSuffix + '/login', jwtHandler.registry.bind(jwtHandler));
 useExpressServer(app, {
