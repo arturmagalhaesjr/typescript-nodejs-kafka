@@ -6,6 +6,7 @@ The project stack
 * Express
 * Jest
 * Docker
+* Kafka Node
 
 This also contains a docker-compose file in order to build a single image
 
